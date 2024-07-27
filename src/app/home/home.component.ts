@@ -26,6 +26,9 @@ export class HomeComponent {
   ];
   sortFilter = ['None', 'First Name', 'Last Name', 'Position'];
 
+  currentPage: number = 1;
+  rows: number = 5;
+
   constructor() {
     this.userService.getAllUsers().then((userList: Users[]) => {
       this.userList = userList;
@@ -64,5 +67,20 @@ export class HomeComponent {
         a.jobTitle > b.jobTitle ? 1 : -1
       );
     else this.filteredUserList = this.userList;
+  }
+
+  paginatedUsers(page: number) {
+    const start = this.rows * (page - 1);
+    const end = start + this.rows;
+    return this.filteredUserList.slice(start, end);
+  }
+
+  setPages() {
+    const pageCount = Math.ceil(this.filteredUserList.length / this.rows);
+    return Array.from({ length: pageCount }, (_, i) => i + 1);
+  }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
   }
 }

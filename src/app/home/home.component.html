@@ -42,5 +42,18 @@
 </div>
 
 <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full">
-  <app-user *ngFor="let user of filteredUserList" [user]="user"></app-user>
+  <app-user
+    *ngFor="let user of paginatedUsers(currentPage)"
+    [user]="user"
+  ></app-user>
 </section>
+<div class="flex items-center justify-center w-full">
+  <button
+    *ngFor="let page of setPages()"
+    [class.active]="currentPage === page"
+    class="text-gray-200 active:text-gray-500 p-4"
+    (click)="onPageChange(page)"
+  >
+    {{ page }}
+  </button>
+</div>
