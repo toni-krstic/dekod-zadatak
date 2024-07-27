@@ -9,7 +9,7 @@ export class UserServiceService {
   constructor() {}
 
   async getAllUsers(): Promise<Users[]> {
-    const data = await fetch(this.url);
+    const data = await fetch(this.url, { method: 'GET', mode: 'no-cors' });
     const res = await data.json();
     return res.data ?? [];
   }
