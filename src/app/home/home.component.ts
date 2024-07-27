@@ -24,6 +24,7 @@ export class HomeComponent {
     'Dizajner',
     'Manager',
   ];
+  sortFilter = ['None', 'First Name', 'Last Name', 'Position'];
 
   constructor() {
     this.userService.getAllUsers().then((userList: Users[]) => {
@@ -47,5 +48,21 @@ export class HomeComponent {
       user.jobTitle.toLowerCase().includes(position.toLowerCase())
     );
     if (position === 'All') this.filteredUserList = this.userList;
+  }
+
+  sortUsers(sortBy: string) {
+    if (sortBy === 'First Name')
+      this.filteredUserList = this.userList.sort((a, b) =>
+        a.firstName > b.firstName ? 1 : -1
+      );
+    else if (sortBy === 'Last Name')
+      this.filteredUserList = this.userList.sort((a, b) =>
+        a.lastName > b.lastName ? 1 : -1
+      );
+    else if (sortBy === 'Position')
+      this.filteredUserList = this.userList.sort((a, b) =>
+        a.jobTitle > b.jobTitle ? 1 : -1
+      );
+    else this.filteredUserList = this.userList;
   }
 }

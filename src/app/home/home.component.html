@@ -26,6 +26,19 @@
       </option>
     </select>
   </div>
+  <div class="flex items-center gap-4">
+    <span class="text-gray-100">Sort By</span>
+    <select
+      name="SortBy"
+      #sortBy
+      (change)="sortUsers(sortBy.value)"
+      class="bg-gray-700 text-gray-200 rounded-lg p-2"
+    >
+      <option *ngFor="let sortBy of sortFilter" #filter>
+        {{ sortBy }}
+      </option>
+    </select>
+  </div>
 </div>
 
 <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full">
