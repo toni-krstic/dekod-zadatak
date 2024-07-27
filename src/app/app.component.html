@@ -1,3 +1,15 @@
-<main class="main"></main>
-
-<router-outlet />
+<nav class="p-4 bg-gray-900">
+  <ul class="flex">
+    <li class="mr-6">
+      <a routerLink="/" class="text-gray-200 hover:text-blue-800">Home</a>
+    </li>
+    <li class="mr-6">
+      <a routerLink="/add-user" class="text-gray-200 hover:text-blue-800"
+        >Add user</a
+      >
+    </li>
+  </ul>
+</nav>
+<main class="p-4 bg-gray-900 flex items-center justify-center w-full">
+  <router-outlet />
+</main>
