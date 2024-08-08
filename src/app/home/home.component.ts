@@ -30,12 +30,11 @@ export class HomeComponent {
   rows: number = 5;
 
   constructor() {
-    this.userService.getAllUsers().then((userList: Users[]) => {
-      this.userList = userList;
-      this.filteredUserList = userList;
+    this.userService.getAllUsers().subscribe((data: any) => {
+      this.userList = data.data;
+      this.filteredUserList = data.data;
     });
   }
-
   searchResults(text: string) {
     if (!text) this.filteredUserList = this.userList;
 

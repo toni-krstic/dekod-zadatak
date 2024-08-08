@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Users } from './users';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserServiceService {
   url = 'https://api.test.ulaznice.hr/paganini/api/job-interview/employees';
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  async getAllUsers(): Promise<Users[]> {
-    const data = await fetch(this.url, { method: 'GET' });
-    const res = await data.json();
-    return res.data ?? [];
+  getAllUsers(): Observable<any> {
+    return this.http.get(this.url, { headers: { Accept: 'application/json' } });
   }
 
   submitApplication(
